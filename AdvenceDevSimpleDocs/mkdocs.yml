@@ -1,1 +1,22 @@
-site_name: My Docs
+site_name: AdvancedDevSample – Documentation technique
+
+nav:
+  - Accueil: index.md
+  - Architecture:
+      - Vue globale: architecture.md
+  - Fonctionnalités:
+      - Produits (CRUD): products.md
+      - Commandes (Orders): orders.md
+  - API:
+      - Swagger: swagger.md
+  - Qualité:
+      - Tests unitaires: tests.md
+      - SonarQube: sonarqube.md
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
