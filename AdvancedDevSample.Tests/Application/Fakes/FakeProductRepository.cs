@@ -10,7 +10,8 @@ namespace AdvancedDevSample.Tests.Application.Fakes
     {
         public bool WasSaved { get; private set; }
 
-        private readonly Product _produit;
+        // Déclarez le champ _produit comme nullable pour corriger l'avertissement CS8618
+        private readonly Product? _produit;
 
         private readonly List<Product> _products = new();
 
@@ -19,7 +20,16 @@ namespace AdvancedDevSample.Tests.Application.Fakes
             _produit = produit;
         }
 
-        public Product GetById(Guid id) => _produit;
+        public FakeProductRepository()
+        {
+        }
+
+        public Product GetById(Guid id)
+        {
+            if (_produit is null)
+                throw new InvalidOperationException("Aucun produit n'est défini dans ce repository factice.");
+            return _produit;
+        }
         
 
         public void Save(Product product)

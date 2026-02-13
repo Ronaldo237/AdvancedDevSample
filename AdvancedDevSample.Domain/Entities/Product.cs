@@ -76,7 +76,14 @@ namespace AdvancedDevSample.Domain.Entities
 
         public void ChangePrice(decimal newPriceValue)
         {
-            throw new NotImplementedException();
+            // Convertir le decimal en Price
+            var price = new Price(newPriceValue);
+
+            // Vérifier si le produit est actif
+            if (!IsActive)
+                throw new InvalidOperationException("Cannot change price of an inactive product.");
+
+            Price = price;
         }
     }
 }
